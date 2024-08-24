@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copymama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .btn-55 {
+            background: linear-gradient(90deg, blue, red);
+            border-radius: 999px;
+            color: #000;
+            display: inline-block;
+            font-weight: 900;
+            overflow: hidden;
+            padding: 1.8rem 5rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            cursor: pointer;
+            position: relative;
+            margin: 20px;
+        }
+
+        .btn-55 span {
+            background: #1e293b;
+            border-radius: 999px;
+            color: #fff;
+            display: grid;
+            inset: 5px;
+            place-items: center;
+            position: absolute;
+            transition: background 0.3s;
+        }
+
+        .btn-55:hover span {
+            background: none;
+        }
+
+        .btn-55 svg {
+            display: block;
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        function toggleScript(action) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/toggle", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify({ action: action }));
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var btnStart = document.getElementById('start-btn');
+                    var btnStop = document.getElementById('stop-btn');
+                    if (action === 'start') {
+                        btnStart.style.display = 'none';
+                        btnStop.style.display = 'inline-block';
+                    } else {
+                        btnStart.style.display = 'inline-block';
+                        btnStop.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1 >COPY IT MAMA</h1>
+    <a href="javascript:void(0);" id="start-btn" class="btn-55" onclick="toggleScript('start')">
+        <span>Start</span>
+    </a>
+    <a href="javascript:void(0);" id="stop-btn" class="btn-55" style="display:none;" onclick="toggleScript('stop')">
+        <span>Stop</span>
+    </a>
+</body>
+</html>
